@@ -81,7 +81,6 @@ public class DashboardActivity extends AppCompatActivity implements DefaultContr
         String textData = intentResult.getContents();
 
         uploadRegister(textData,user_id);
-        getRegisters(user_id);
     }
 
     private void uploadRegister(String cardId,String userId) {
@@ -92,6 +91,7 @@ public class DashboardActivity extends AppCompatActivity implements DefaultContr
                 String data = jsonObject.getString("data");
                 if (status.equals("ok")){
                     customToast(data);
+                    getRegisters(user_id);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

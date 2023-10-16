@@ -56,11 +56,11 @@ public class DashboardActivity extends AppCompatActivity implements DefaultContr
         linkControls();
 
         Intent intent = getIntent();
-        if (intent != null) {
-            user_id = intent.getStringExtra("DATA");
-            getRegisters(user_id);
 
-        }
+        user_id = intent.getStringExtra("DATA");
+        getRegisters(user_id);
+
+
 
         btnLogout.setOnClickListener(v -> {
             logout();
@@ -160,8 +160,6 @@ public class DashboardActivity extends AppCompatActivity implements DefaultContr
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(), "Error desconocido", Toast.LENGTH_SHORT).show();
                 }
-            } else {
-                Toast.makeText(getApplicationContext(), "Error de conexión de red", Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
@@ -215,6 +213,6 @@ public class DashboardActivity extends AppCompatActivity implements DefaultContr
     @Override
     protected void onResume() {
         super.onResume();
-        Toast.makeText(this, "hi", Toast.LENGTH_SHORT).show();
+        getRegisters(user_id);
     }
 }

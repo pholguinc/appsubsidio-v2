@@ -81,7 +81,7 @@ public class DashboardActivity extends AppCompatActivity implements DefaultContr
         String textData = intentResult.getContents();
 
         uploadRegister(textData,user_id);
-
+        getRegisters(user_id);
     }
 
     private void uploadRegister(String cardId,String userId) {

@@ -106,8 +106,6 @@ public class DashboardActivity extends AppCompatActivity implements DefaultContr
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(), "Error desconocido", Toast.LENGTH_SHORT).show();
                 }
-            } else {
-                Toast.makeText(getApplicationContext(), "Error de conexión de red", Toast.LENGTH_SHORT).show();
             }
         }){
             @Override

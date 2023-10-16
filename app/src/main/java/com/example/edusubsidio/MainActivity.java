@@ -6,9 +6,14 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -16,11 +21,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.edusubsidio.dao.UserDao;
-import com.example.edusubsidio.database.DataBaseHelper;
 import com.example.edusubsidio.interfaces.DefaultControls;
 import com.example.edusubsidio.model.User;
 import com.example.edusubsidio.views.DashboardActivity;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
@@ -121,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements DefaultControls {
                     }
                     cardLogin.setVisibility(View.VISIBLE);
                     cardProgress.setVisibility(View.GONE);
-                    Toast.makeText(this, "Bienvenido", Toast.LENGTH_LONG).show();
+                    customToast("Bienvenido");
                     intent = new Intent(this, DashboardActivity.class);
                     intent.putExtra("DATA",data);
                     startActivity(intent);
@@ -139,13 +142,13 @@ public class MainActivity extends AppCompatActivity implements DefaultControls {
                     String errorResponse = new String(error.networkResponse.data, "UTF-8");
                     JSONObject errorJSON = new JSONObject(errorResponse);
                     String errorMessage = errorJSON.getString("message");
-                    Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_SHORT).show();
+                    customToast(errorMessage);
                 } catch (UnsupportedEncodingException | JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Error desconocido", Toast.LENGTH_SHORT).show();
+                    customToast("Error desconocido");
                 }
             } else {
-                Toast.makeText(getApplicationContext(), "Error de conexión de red", Toast.LENGTH_SHORT).show();
+                customToast("Error de conexión de red");
             }
             cardLogin.setVisibility(View.VISIBLE);
             cardProgress.setVisibility(View.GONE);
@@ -159,5 +162,17 @@ public class MainActivity extends AppCompatActivity implements DefaultControls {
             }
         };
         requestQueue.add(stringRequest);
+    }
+
+    public void customToast(String msg){
+        LayoutInflater layoutInflater = getLayoutInflater();
+        View view = layoutInflater.inflate(R.layout.toast,(ViewGroup) findViewById(R.id.custom_toast_layout));
+        TextView txvMsg = view.findViewById(R.id.custom_toast_text);
+        txvMsg.setText(msg);
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.BOTTOM,0,200);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(view);
+        toast.show();
     }
 }

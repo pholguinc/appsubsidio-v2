@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/toast_custom.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/custom_toast_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#03C61D"
+    android:orientation="horizontal"
+    android:padding="15dp"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/custom_toast_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:paddingStart="10dp"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:text="Este es un Toast personalizado" />
+</LinearLayout>

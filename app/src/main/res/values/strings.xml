@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">EduSubSidio</string>
+    <string name="message_welcome">Bienvenido al sistema</string>
+    <string name="label_card_cedula">Cedula :</string>
+    <string name="label_card_nombres">Nombres :</string>
+    <string name="label_card_ingreso">Ingreso :</string>
+    <string name="label_card_salida">Salida :</string>
+</resources>
